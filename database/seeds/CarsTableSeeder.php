@@ -11,10 +11,8 @@ class CarsTableSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::All();
-        $users->each(function ($user) {
-            $car = factory(\App\Car::class)->make();
-            $user->cars()->save($car);
+        factory(App\User::class, 50)->create()->each(function ($u) {
+            $u->cars()->save(factory(App\Car::class)->make());
         });
     }
 }
