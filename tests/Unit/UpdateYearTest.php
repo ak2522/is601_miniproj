@@ -6,16 +6,19 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class InsertCarTest extends TestCase
+class UpdateYearTest extends TestCase
 {
     /**
      * A basic test example.
      *
      * @return void
      */
-    public function testCar()
+    public function testUpdateYear()
     {
-        $car = factory(\App\Car::class)->make();
-        $this->assertDatabaseHas('cars', ["make" => "Ford"]);
+        $cars = Car::all();
+        $car = Car::find(10);
+        $car->year = '2000';
+        $car->save();
+        $this->assertDatabaseHas('cars', ["year" => '2000']);
     }
 }
